@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, { Component } from "react";
+import TodoMenu from "./components/todo-menu/todo-menu.component";
+import { connect } from "react-redux";
+
+class App extends Component {
+  render() {
+    const { theme } = this.props;
+    return (
+      <div
+        className="app"
+        style={{
+          backgroundColor: `${theme ? "rgb(20, 20, 20)" : "white"}`,
+        }}
+      >
+        <img
+          src={
+            theme
+              ? "/images/bg-desktop-dark.jpg"
+              : "/images/bg-desktop-light.jpg"
+          }
+          alt="background image"
+          className="app-bg"
+        />
+        <div className="middle">
+          <TodoMenu />
+        </div>
+      </div>
+    );
+  }
 }
-
-export default App;
+const mapStateToProps = (state) => ({
+  theme: state.theme.theme,
+});
+export default connect(mapStateToProps)(App);
