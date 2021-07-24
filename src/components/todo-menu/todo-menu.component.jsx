@@ -2,6 +2,10 @@
 import React, { useState } from "react";
 import TodoListsContext from "../../contexts/todo-lists/todo-lists.context";
 import MenuContent from "../menu-content/menu-content.component";
+import {
+  removeCompleteTodoFromList,
+  removeTodoFromList,
+} from "./todo-menu.utils";
 
 const TodoMenu = () => {
   const [todoType, setTodoType] = useState(null);
@@ -17,7 +21,7 @@ const TodoMenu = () => {
     setTodos([...newTodos]);
   };
   const sortAll = () => {
-    setTodos([...totalTodos]);
+    setTodos([...todos]);
     setTodoType("all");
   };
   const sortActive = (sortActiveTodos) => {
@@ -27,6 +31,18 @@ const TodoMenu = () => {
   const sortCompleted = (sortCompletedTodos) => {
     setCompletedTodos([...sortCompletedTodos]);
     setTodoType("completed");
+  };
+
+  const removeTodo = (removeTodo) => {
+    setTodos(removeTodoFromList(todos, removeTodo));
+    setActiveTodos(removeTodoFromList(activeTodos, removeTodo));
+    setCompletedTodos(removeTodoFromList(completedTodos, removeTodo));
+  };
+
+  const removeCompletedTodos = () => {
+    setTodos(removeCompleteTodoFromList(todos));
+    setActiveTodos(removeCompleteTodoFromList(activeTodos));
+    setCompletedTodos(removeCompleteTodoFromList(completedTodos));
   };
 
   const evalRenderTodos = (type) => {
@@ -49,6 +65,8 @@ const TodoMenu = () => {
           sortAll,
           sortActive,
           sortCompleted,
+          removeTodo,
+          removeCompletedTodos,
         }}
       >
         <MenuContent

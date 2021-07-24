@@ -8,3 +8,7 @@ export const setTodoStatus = (todos, currentTodo) => {
     }
   });
 };
+
+export const removeTodoFromTodolists = (todos, removeTodo) => {
+  return todos.filter((todo) => todo.id !== removeTodo.id);
+};

@@ -7,6 +7,8 @@ const TodoListsContext = createContext({
   sortAll: () => {},
   sortActive: () => {},
   sortCompleted: () => {},
+  removeTodo: () => {},
+  removeCompletedTodos: () => {},
 });
 
 export default TodoListsContext;

@@ -11,11 +11,11 @@ import { CheckIconEmpty, CheckIconFilled } from "./todo-list.styles";
 // import { selectAppTheme } from "../../redux/theme/theme.selector";
 import ThemeContext from "../../contexts/theme/theme.context";
 import TodoListsContext from "../../contexts/todo-lists/todo-lists.context";
-import { setTodoStatus } from "./todo-list.utils";
+import { removeTodoFromTodolists, setTodoStatus } from "./todo-list.utils";
 
 const TodoList = ({ children, currentTodo }) => {
   const { theme } = useContext(ThemeContext);
-  const { todos, setTodo } = useContext(TodoListsContext);
+  const { todos, setTodo, removeTodo } = useContext(TodoListsContext);
   const [active, setActive] = useState(false);
   const lineThroughColor = theme
     ? "line-through 1px white"
@@ -42,7 +42,9 @@ const TodoList = ({ children, currentTodo }) => {
         >
           <p style={{ color: `${theme ? "white" : "black"}` }}>{children}</p>
         </div>
-        <RemoveIcon style={{ cursor: "pointer" }}></RemoveIcon>
+        <div onClick={() => removeTodo(currentTodo)}>
+          <RemoveIcon style={{ cursor: "pointer" }}></RemoveIcon>
+        </div>
       </Box>
     </div>
   );

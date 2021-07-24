@@ -9,7 +9,7 @@ import ThemeContext from "../../contexts/theme/theme.context";
 import { sortActiveItems, sortCompletedItems } from "./todo-footer.utils";
 
 const TodoFooter = () => {
-  const { todos, sortActive, sortCompleted, sortAll } =
+  const { todos, sortActive, sortCompleted, sortAll, removeCompletedTodos } =
     useContext(TodoListsContext);
   const { theme } = useContext(ThemeContext);
   return (
@@ -29,7 +29,7 @@ const TodoFooter = () => {
         </FooterText>
       </FooterMiddle>
       <div className="clear-completed">
-        <FooterText> Clear Completed</FooterText>
+        <FooterText onClick={removeCompletedTodos}> Clear Completed</FooterText>
       </div>
     </TodoFooterElement>
   );

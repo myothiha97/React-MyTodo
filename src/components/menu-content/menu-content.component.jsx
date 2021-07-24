@@ -12,7 +12,7 @@ const MenuContent = ({ todoLists, type }) => {
   const renderAllTodos = (renderTodos) => {
     // console.log("Todos quantity ------> ", todos.length);
     // console.log("renderTodos quantity ------> ", renderTodos.length);
-    console.log("To render todos type : ", renderTodos);
+    // console.log("To render todos type : ", renderTodos);
     if (renderTodos.length > 0) {
       return (
         <React.Fragment>
@@ -23,15 +23,15 @@ const MenuContent = ({ todoLists, type }) => {
         </React.Fragment>
       );
     } else {
-      if (type === null && todoLists.length < 1) {
-        console.log("Empty is fired");
+      if (type !== "active" && type !== "completed" && todoLists.length < 1) {
+        // console.log("Empty is fired");
         return (
           <EmptyItem textColor={theme ? "white" : "black"}>
             There is no item added yet
           </EmptyItem>
         );
       } else {
-        console.log("No Empty is fired");
+        // console.log("No Empty is fired");
         return (
           <React.Fragment>
             <EmptyItem textColor={theme ? "white" : "black"}>
