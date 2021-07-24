@@ -1,12 +1,13 @@
 import { ReactComponent as SunLogo } from "../../assets/icon-sun.svg";
 import { ReactComponent as MoonLogo } from "../../assets/icon-moon.svg";
 
-import { connect } from "react-redux";
-import { setTheme } from "../../redux/theme/theme.actions";
+import { useContext } from "react";
+import ThemeContext from "../../contexts/theme/theme.context";
 
-const Logo = ({ theme, toggleTheme }) => {
+const Logo = ({ theme }) => {
+  const { toggleTheme } = useContext(ThemeContext);
   return (
-    <div onClick={toggleTheme}>
+    <div onClick={() => toggleTheme()}>
       {theme ? (
         <SunLogo fill="black" stroke="white" className="toggle-btn"></SunLogo>
       ) : (
@@ -16,8 +17,4 @@ const Logo = ({ theme, toggleTheme }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleTheme: () => dispatch(setTheme()),
-});
-
-export default connect(null, mapDispatchToProps)(Logo);
+export default Logo;

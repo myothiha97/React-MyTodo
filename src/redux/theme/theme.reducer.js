@@ -1,5 +1,4 @@
 import { themeActionTypes } from "./theme.types";
-import { setTheme } from "./theme.actions";
 
 const INITIAL_STATE = {
   theme: true,

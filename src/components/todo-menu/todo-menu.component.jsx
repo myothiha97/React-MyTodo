@@ -1,37 +1,63 @@
 // import "./todo-menu.styles.scss";
+import React, { useState } from "react";
+import TodoListsContext from "../../contexts/todo-lists/todo-lists.context";
+import MenuContent from "../menu-content/menu-content.component";
 
-import { DarkBox, LightBox } from "../box/box.component";
-import React from "react";
-import "./todo-menu.styles.scss";
+const TodoMenu = () => {
+  const [todoType, setTodoType] = useState(null);
+  const [todos, setTodos] = useState([]);
+  const [totalTodos, setTotalTodos] = useState([]);
+  const [activeTodos, setActiveTodos] = useState([]);
+  const [completedTodos, setCompletedTodos] = useState([]);
+  const addTodos = (data) => {
+    setTodos([...todos, data]);
+    setTotalTodos([...totalTodos, data]);
+  };
+  const setTodo = (newTodos) => {
+    setTodos([...newTodos]);
+  };
+  const sortAll = () => {
+    setTodos([...totalTodos]);
+    setTodoType("all");
+  };
+  const sortActive = (sortActiveTodos) => {
+    setActiveTodos([...sortActiveTodos]);
+    setTodoType("active");
+  };
+  const sortCompleted = (sortCompletedTodos) => {
+    setCompletedTodos([...sortCompletedTodos]);
+    setTodoType("completed");
+  };
 
-import { connect } from "react-redux";
-import Logo from "../logo/logo.component";
+  const evalRenderTodos = (type) => {
+    if (type === "active") {
+      return activeTodos;
+    } else if (type === "completed") {
+      return completedTodos;
+    } else {
+      return todos;
+    }
+  };
 
-const TodoMenu = ({ theme, toggleTheme }) => {
   return (
     <div className="todo-menu">
-      <div className="todo-menu__header">
-        <h1
-          style={{
-            color: `${theme ? "white" : "black"}`,
-          }}
-        >
-          TODO
-        </h1>
-        <Logo theme={theme}></Logo>
-      </div>
-
-      {theme ? (
-        <DarkBox>This is dark</DarkBox>
-      ) : (
-        <LightBox>This is light</LightBox>
-      )}
+      <TodoListsContext.Provider
+        value={{
+          todos,
+          addTodos,
+          setTodo,
+          sortAll,
+          sortActive,
+          sortCompleted,
+        }}
+      >
+        <MenuContent
+          todoLists={evalRenderTodos(todoType)}
+          type={todoType}
+        ></MenuContent>
+      </TodoListsContext.Provider>
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({
-  theme: state.theme.theme,
-});
-
-export default connect(mapStateToProps)(TodoMenu);
+export default TodoMenu;

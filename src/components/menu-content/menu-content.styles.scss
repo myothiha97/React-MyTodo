@@ -1,0 +1,27 @@
+.todo-menu {
+  width: 500px;
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .todo-list-wrapper {
+    box-shadow: 0 0 5px rgba(#25273c, 0.4);
+    border-radius: 10px;
+  }
+
+  .no-item {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .dark {
+    background-color: #25273c;
+  }
+  .white {
+    background-color: white;
+  }
+}
