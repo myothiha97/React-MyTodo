@@ -41,6 +41,10 @@ const GlobalStyle = createGlobalStyle`
     outline: none;
     border: none;
     }
+    
+    ::-webkit-scrollbar{
+        display: none;
+    }
 
 `;
 
