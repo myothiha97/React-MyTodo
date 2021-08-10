@@ -3,7 +3,6 @@
   width: 300px;
   overflow: hidden;
   text-align: left;
-  border: 1px solid black;
 
   @media screen and (max-width: 600px) {
     width: calc(300px * 0.7);
