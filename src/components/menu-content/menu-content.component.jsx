@@ -6,6 +6,8 @@ import ThemeContext from "../../contexts/theme/theme.context";
 import TodoList from "../todo-list/todo-list.component";
 import Logo from "../logo/logo.component";
 import { TodoWrapper, EmptyItem } from "./menu-content.styles";
+import { HiddenFooter } from "../hidden-footer/hidden-footer.styles";
+import HiddenFooterMenu from "../hidden-footer/hidden-footer.component";
 const MenuContent = ({ todoLists, type }) => {
   const { theme } = useContext(ThemeContext);
 
@@ -45,22 +47,28 @@ const MenuContent = ({ todoLists, type }) => {
   };
   return (
     <div className="todo-menu">
-      <div className="todo-menu__header">
-        <h1
-          style={{
-            color: `${theme ? "white" : "black"}`,
-          }}
-        >
-          TODO
-        </h1>
-        <Logo theme={theme}></Logo>
+      <div className="todo-menu-wrapper">
+        <div className="todo-menu__header">
+          <h1
+            style={{
+              color: `${theme ? "white" : "black"}`,
+            }}
+          >
+            TODO
+          </h1>
+          <Logo theme={theme}></Logo>
+        </div>
+
+        <TodoInput></TodoInput>
+
+        <TodoWrapper bgColor={theme ? "#25273c" : "white"}>
+          {renderAllTodos(todoLists)}
+        </TodoWrapper>
       </div>
-
-      <TodoInput></TodoInput>
-
-      <TodoWrapper bgColor={theme ? "#25273c" : "white"}>
-        {renderAllTodos(todoLists)}
-      </TodoWrapper>
+      <HiddenFooterMenu
+        bgColor={theme ? "#25273c" : "white"}
+        textColor={theme ? "white" : "black"}
+      ></HiddenFooterMenu>
     </div>
   );
 };

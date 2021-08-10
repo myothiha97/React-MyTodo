@@ -13,25 +13,30 @@ const TodoFooter = () => {
     useContext(TodoListsContext);
   const { theme } = useContext(ThemeContext);
   return (
-    <TodoFooterElement textColor={theme ? "white" : "black"}>
-      <div className="item-left-count">
-        <FooterText>{todos.length} items left</FooterText>
-      </div>
-      <FooterMiddle>
-        <FooterText onClick={() => sortAll()}> All</FooterText>
-        <FooterText onClick={() => sortActive(sortActiveItems(todos))}>
-          {" "}
-          Active
-        </FooterText>
-        <FooterText onClick={() => sortCompleted(sortCompletedItems(todos))}>
-          {" "}
-          Completed
-        </FooterText>
-      </FooterMiddle>
-      <div className="clear-completed">
-        <FooterText onClick={removeCompletedTodos}> Clear Completed</FooterText>
-      </div>
-    </TodoFooterElement>
+    <div className="footer">
+      <TodoFooterElement textColor={theme ? "white" : "black"}>
+        <div className="item-left-count">
+          <FooterText>{todos.length} items left</FooterText>
+        </div>
+        <FooterMiddle>
+          <FooterText onClick={() => sortAll()}> All</FooterText>
+          <FooterText onClick={() => sortActive(sortActiveItems(todos))}>
+            {" "}
+            Active
+          </FooterText>
+          <FooterText onClick={() => sortCompleted(sortCompletedItems(todos))}>
+            {" "}
+            Completed
+          </FooterText>
+        </FooterMiddle>
+        <div className="clear-completed">
+          <FooterText onClick={removeCompletedTodos}>
+            {" "}
+            Clear Completed
+          </FooterText>
+        </div>
+      </TodoFooterElement>
+    </div>
   );
 };
 

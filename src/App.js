@@ -1,9 +1,10 @@
 import "./App.css";
 
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import TodoMenu from "./components/todo-menu/todo-menu.component";
 import { connect } from "react-redux";
 import ThemeContext from "./contexts/theme/theme.context";
+import GlobalStyle from "./global.styles";
 
 class App extends Component {
   state = {
@@ -17,32 +18,35 @@ class App extends Component {
   render() {
     const { theme } = this.state;
     return (
-      <div
-        className="app"
-        style={{
-          backgroundColor: `${theme ? "rgb(20, 20, 20)" : "white"}`,
-        }}
-      >
-        <img
-          src={
-            theme
-              ? "/images/bg-desktop-dark.jpg"
-              : "/images/bg-desktop-light.jpg"
-          }
-          alt="background image"
-          className="app-bg"
-        />
-        <ThemeContext.Provider
-          value={{
-            theme,
-            toggleTheme: this.toggleTheme.bind(this),
+      <Fragment>
+        <GlobalStyle theme={theme} />
+        <div
+          className="app"
+          style={{
+            backgroundColor: `${theme ? "rgb(20, 20, 20)" : "white"}`,
           }}
         >
-          <div className="middle">
-            <TodoMenu />
-          </div>
-        </ThemeContext.Provider>
-      </div>
+          <img
+            src={
+              theme
+                ? "/images/bg-desktop-dark.jpg"
+                : "/images/bg-desktop-light.jpg"
+            }
+            alt="background image"
+            className="app-bg"
+          />
+          <ThemeContext.Provider
+            value={{
+              theme,
+              toggleTheme: this.toggleTheme.bind(this),
+            }}
+          >
+            <div className="middle">
+              <TodoMenu />
+            </div>
+          </ThemeContext.Provider>
+        </div>
+      </Fragment>
     );
   }
 }

@@ -56,7 +56,7 @@ const TodoMenu = () => {
   };
 
   return (
-    <div className="todo-menu">
+    <React.Fragment>
       <TodoListsContext.Provider
         value={{
           todos,
@@ -74,7 +74,7 @@ const TodoMenu = () => {
           type={todoType}
         ></MenuContent>
       </TodoListsContext.Provider>
-    </div>
+    </React.Fragment>
   );
 };
 

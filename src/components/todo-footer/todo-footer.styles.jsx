@@ -6,6 +6,10 @@ export const FooterMiddle = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (max-width: 628px) {
+    display: none;
+  }
 `;
 
 export const TodoFooterElement = styled.div`
@@ -18,4 +22,10 @@ export const TodoFooterElement = styled.div`
 
 export const FooterText = styled.p`
   cursor: pointer;
+`;
+
+export const FooterMiddleLeft = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;

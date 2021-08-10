@@ -1,0 +1,15 @@
+.todolist-content {
+  margin-left: 30px;
+  width: 300px;
+  overflow: hidden;
+  text-align: left;
+  border: 1px solid black;
+
+  @media screen and (max-width: 600px) {
+    width: calc(300px * 0.7);
+  }
+
+  @media screen and (max-width: 477px) {
+    width: calc(300px * 0.5);
+  }
+}

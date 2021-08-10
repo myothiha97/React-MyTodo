@@ -5,8 +5,13 @@ import Box from "../box/box.component";
 import { ReactComponent as CheckIcon } from "../../assets/icon-check.svg";
 import { ReactComponent as RemoveIcon } from "../../assets/icon-cross.svg";
 
-import { CheckIconEmpty, CheckIconFilled } from "./todo-list.styles";
+import {
+  CheckIconEmpty,
+  CheckIconFilled,
+  TodoListLeft,
+} from "./todo-list.styles";
 
+import "./todo-list.styles.scss";
 // import { createStructuredSelector } from "reselect";
 // import { selectAppTheme } from "../../redux/theme/theme.selector";
 import ThemeContext from "../../contexts/theme/theme.context";
@@ -27,21 +32,25 @@ const TodoList = ({ children, currentTodo }) => {
   return (
     <div className="todo-list">
       <Box borderColor={theme ? "#4F4F4F" : "#CDCDCD"}>
-        {currentTodo.isDone ? (
-          <CheckIconFilled onClick={handleClick}>
-            <CheckIcon width="10px" height="10px"></CheckIcon>
-          </CheckIconFilled>
-        ) : (
-          <CheckIconEmpty onClick={handleClick}></CheckIconEmpty>
-        )}
-        <div
-          className="content"
-          style={{
-            textDecoration: `${currentTodo.isDone ? lineThroughColor : "none"}`,
-          }}
-        >
-          <p style={{ color: `${theme ? "white" : "black"}` }}>{children}</p>
-        </div>
+        <TodoListLeft>
+          {currentTodo.isDone ? (
+            <CheckIconFilled onClick={handleClick}>
+              <CheckIcon width="10px" height="10px"></CheckIcon>
+            </CheckIconFilled>
+          ) : (
+            <CheckIconEmpty onClick={handleClick}></CheckIconEmpty>
+          )}
+          <div
+            className="todolist-content"
+            style={{
+              textDecoration: `${
+                currentTodo.isDone ? lineThroughColor : "none"
+              }`,
+            }}
+          >
+            <p style={{ color: `${theme ? "white" : "black"}` }}>{children}</p>
+          </div>
+        </TodoListLeft>
         <div onClick={() => removeTodo(currentTodo)}>
           <RemoveIcon style={{ cursor: "pointer" }}></RemoveIcon>
         </div>

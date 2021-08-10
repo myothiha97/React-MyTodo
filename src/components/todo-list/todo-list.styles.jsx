@@ -42,3 +42,10 @@ export const CheckIconFilled = styled.div`
   align-items: center;
   cursor: pointer;
 `;
+
+export const TodoListLeft = styled.div`
+  display: flex;
+  width: auto;
+  justify-content: flex-start;
+  align-items: center;
+`;
