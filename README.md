@@ -2,7 +2,7 @@
 
 ![DemoImage](./demo-images/darktheme-todo.png)
 
-This app mainly developed by reactjs library.
+This app is mainly developed by reactjs library.
 In this project you can manage your todos and you can also toggle the theme.
 
 ## Features
