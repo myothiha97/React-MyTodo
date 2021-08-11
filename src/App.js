@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 
 import React, { Component, Fragment } from "react";
 import TodoMenu from "./components/todo-menu/todo-menu.component";
@@ -13,6 +13,33 @@ class App extends Component {
 
   toggleTheme() {
     this.setState({ theme: !this.state.theme });
+  }
+
+  renderBgResponsive(theme) {
+    if (window.matchMedia(`screen and (max-width: 600px)`).matches) {
+      console.log("match media");
+      return (
+        <img
+          src={
+            theme ? "/images/bg-mobile-dark.jpg" : "/images/bg-mobile-light.jpg"
+          }
+          alt="background-image"
+          className="app-bg"
+        ></img>
+      );
+    } else {
+      return (
+        <img
+          src={
+            theme
+              ? "/images/bg-desktop-dark.jpg"
+              : "/images/bg-desktop-light.jpg"
+          }
+          alt="background image"
+          className="app-bg"
+        />
+      );
+    }
   }
 
   render() {

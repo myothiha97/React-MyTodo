@@ -19,7 +19,9 @@ const MenuContent = ({ todoLists, type }) => {
       return (
         <React.Fragment>
           {renderTodos.map((todo) => (
-            <TodoList currentTodo={todo}>{todo.text}</TodoList>
+            <TodoList key={todo.id} currentTodo={todo}>
+              {todo.text}
+            </TodoList>
           ))}
           <TodoFooter></TodoFooter>
         </React.Fragment>
